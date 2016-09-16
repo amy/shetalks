@@ -29,6 +29,7 @@ Queries 		- many redundant/inefficient queries. Many terrible cases, where if on
 
 Testing			- need to create mocks, tests are non-existent rn
 
+```
 shetalks
 	cmd
 		shetalks			// Router executable 
@@ -38,6 +39,7 @@ shetalks
 	routes					// Register router
 		router
 	shetalks.go 			// Domain logic
+```
 
 > The router can take on any service configured to any database
 > The handlers can take on service interfaces configured to any database 
