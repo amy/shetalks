@@ -1,6 +1,6 @@
-Event
-Organization
-Speaker
+API for an event, speaker, and organization relationship.
+
+Currently, only event is built out.
 
 Notes:
 
