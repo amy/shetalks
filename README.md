@@ -17,6 +17,8 @@ Design:
 Next Steps:
 > Combine routes + handlers packages into a http package
 > Abstract out server / handler logic (Ex: encode / decode)
+> API Versioning
+> Docker compose out the server
 > Address everything below
 >>>>>>> README
 
