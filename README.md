@@ -16,11 +16,12 @@ Design:
 
 Next Steps:
 > Combine routes + handlers packages into a http package
-> Abstract out server / handler logic (Ex: encode / decode)
+> Abstract out handler logic (Ex: encode / decode -> just attach whatever encoder / decoder you want as well as header format), Include a context. 
 > API Versioning
 > Docker compose out the server
+> Revisit whether I actually want a pointer or a value passed along as either the receiver or in parameters
+> Issue during Create, where if speaker doesn't exist, you can still assign the uncreated speaker to the event
 > Address everything below
->>>>>>> README
 
 Recognized areas of improvement:
 
@@ -34,7 +35,8 @@ Logging 		- should create/incorporate a logging pkg (need to research what deser
 				  to be logged)
 
 Queries 		- many redundant/inefficient queries. Many terrible cases, where if one 
-                  query succeeds & another fails, the first query is not rolled back
+                  query succeeds & another fails, the first query is not rolled back. Need 
+                  to look into atomic transactions
 
 Testing			- need to create mocks, tests are non-existent rn
 

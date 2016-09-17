@@ -30,6 +30,7 @@ func AddEvent(es shetalks.EventService) http.Handler {
 		}
 
 		if err := json.Unmarshal(body, &e); err != nil {
+
 			w.WriteHeader(http.StatusUnprocessableEntity)
 			if err := json.NewEncoder(w).Encode(err); err != nil {
 				w.WriteHeader(http.StatusUnprocessableEntity) // unable to write json error to stream w
