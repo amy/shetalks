@@ -4,6 +4,7 @@ package handlers_test
 
 import (
 	"bytes"
+	"encoding/json"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -62,9 +63,11 @@ func TestHandlers_AddEvent(t *testing.T) {
 				statusCode, tb.expectedStatusCode)
 		}
 
-		if responseBody := rr.Body.String(); responseBody != string(tb.jsonStr) {
+		var e shetalks.Event
+		json.NewDecoder(rr.Body).Decode(&e)
+		if response := e; !reflect.DeepEqual(response, tb.expectedEvent) {
 			t.Errorf("handler returned unexpected body: got %q want %q",
-				responseBody, string(tb.jsonStr))
+				response, tb.expectedEvent)
 		}
 
 		if es.CreateInvoked != tb.createInvoked {
