@@ -4,7 +4,6 @@ package handlers_test
 
 import (
 	"bytes"
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -26,7 +25,7 @@ func TestHandlers_AddEvent(t *testing.T) {
 		expectedStatusCode int
 	}{
 		{
-			[]byte(`{"name":"test name","description":"test description","Speakers":[111,111]}`),
+			[]byte(`{"name":"test name","description":"test description","Speakers":[111,111]}` + "\n"),
 			shetalks.Event{Name: "test name", Description: "test description", Speakers: []int{111, 111}},
 			true,
 			http.StatusCreated,
@@ -57,22 +56,15 @@ func TestHandlers_AddEvent(t *testing.T) {
 		// Invoke AddEvent
 		handlers.AddEvent(&es).ServeHTTP(rr, r)
 
-		// Assertions //
-
-		// Check the status code is what we expect.
-
-		if status := rr.Code; status != tb.expectedStatusCode {
+		// Assertions
+		if statusCode := rr.Code; statusCode != tb.expectedStatusCode {
 			t.Errorf("handler returned wrong status code: got %v want %v",
-				status, tb.expectedStatusCode)
+				statusCode, tb.expectedStatusCode)
 		}
 
-		// Check the response body is what we expect.
-
-		fmt.Printf("Body String: %v", rr.Body.String())
-
-		if rr.Body.String() != string(tb.jsonStr) {
-			t.Errorf("handler returned unexpected body: got %v want %v",
-				rr.Body.String(), string(tb.jsonStr))
+		if responseBody := rr.Body.String(); responseBody != string(tb.jsonStr) {
+			t.Errorf("handler returned unexpected body: got %q want %q",
+				responseBody, string(tb.jsonStr))
 		}
 
 		if es.CreateInvoked != tb.createInvoked {
