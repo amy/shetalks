@@ -15,7 +15,7 @@ Design:
 > Handlers are closures
 
 Next Steps:
-> Combine routes + handlers packages into a http package
+> Combine routes + handlers packages into a http package. Think more about packages and what functions are exportable. Maybe just put everything into the shetalks package? 
 > Abstract out handler logic (Ex: encode / decode -> just attach whatever encoder / decoder you want as well as header format), Include a context. 
 > API Versioning
 > Docker compose out the server

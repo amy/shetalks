@@ -30,8 +30,6 @@ func main() {
 	// Create Services
 	es := &mysql.EventService{DB: db}
 
-	es.Delete(40)
-
 	// Create Router
 	router := routes.NewRouter(es)
 
