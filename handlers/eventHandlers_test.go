@@ -70,9 +70,9 @@ func TestHandlers_AddEvent(t *testing.T) {
 
 		fmt.Printf("Body String: %v", rr.Body.String())
 
-		if rr.Body.String() != `{"name":"test name","description":"test description","Speakers":[111,111]}` {
+		if rr.Body.String() != string(tb.jsonStr) {
 			t.Errorf("handler returned unexpected body: got %v want %v",
-				rr.Body.String(), `{"name":"test name","description":"test description","Speakers":[111,111]}`)
+				rr.Body.String(), string(tb.jsonStr))
 		}
 
 		if es.CreateInvoked != tb.createInvoked {
