@@ -11,6 +11,9 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// May remove closures & create a Handler struct type for abstraction
+// of handler logic. Ex: encode / decode
+
 func AddEvent(es shetalks.EventService) http.Handler {
 
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
